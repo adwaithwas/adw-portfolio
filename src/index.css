@@ -5,7 +5,7 @@
   --color-beige: #e8dcc4;
   --color-black: #111111;
   --color-charcoal: #333333;
-  --color-muted-red: #8b3a3a;
+  --color-muted-red: #e53e3e;
   --font-sans: "Inter", system-ui, sans-serif;
 }
 
@@ -43,4 +43,8 @@ body::before {
 /* Custom smooth scroll */
 html {
   scroll-behavior: smooth;
+}
+
+* {
+  cursor: default !important;
 }

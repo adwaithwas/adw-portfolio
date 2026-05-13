@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import Lenis from 'lenis';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -18,8 +19,34 @@ const staggerContainer = {
 };
 
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen font-sans selection:bg-muted-red selection:text-white">
+      <CustomCursor />
       {/* Navigation */}
       <nav className="fixed top-0 w-full p-6 md:p-10 flex justify-between items-center z-40 mix-blend-difference text-white">
         <motion.div
@@ -317,6 +344,72 @@ function LeetcodeIcon() {
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 2L2 12l10 10 10-10L12 2zM12 6l6 6-6 6-6-6 6-6z" />
     </svg>
+  );
+}
+
+function CustomCursor() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    const updateMousePosition = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    const handleMouseOver = (e) => {
+      if (e.target.tagName.toLowerCase() === 'a' ||
+        e.target.closest('a') ||
+        e.target.tagName.toLowerCase() === 'button' ||
+        e.target.closest('button')) {
+        setIsHovering(true);
+      } else {
+        setIsHovering(false);
+      }
+    };
+
+    window.addEventListener("mousemove", updateMousePosition);
+    window.addEventListener("mouseover", handleMouseOver);
+
+    return () => {
+      window.removeEventListener("mousemove", updateMousePosition);
+      window.removeEventListener("mouseover", handleMouseOver);
+    };
+  }, []);
+
+  return (
+    <>
+      {/* Fast Red Outline */}
+      <motion.div
+        className="fixed top-0 left-0 w-10 h-10 rounded-full border-2 border-muted-red/80 pointer-events-none z-50 hidden md:block"
+        animate={{
+          x: mousePosition.x - 16, // +4 offset - 20 (half of w-10)
+          y: mousePosition.y - 14, // +6 offset - 20
+          scale: isHovering ? 1.2 : 1,
+        }}
+        transition={{
+          type: "spring",
+          damping: 30,
+          stiffness: 350,
+          mass: 0.4,
+        }}
+      />
+      {/* Main Circle */}
+      <motion.div
+        className="fixed top-0 left-0 w-[28px] h-[28px] rounded-full bg-charcoal/20 pointer-events-none z-50 backdrop-blur-[1px] hidden md:block"
+        animate={{
+          x: mousePosition.x - 10, // +4 offset - 14 (half of 28)
+          y: mousePosition.y - 8,  // +6 offset - 14
+          scale: isHovering ? 1.5 : 1,
+          opacity: isHovering ? 0.3 : 0.6,
+        }}
+        transition={{
+          type: "spring",
+          damping: 40,
+          stiffness: 180,
+          mass: 0.6,
+        }}
+      />
+    </>
   );
 }
 
