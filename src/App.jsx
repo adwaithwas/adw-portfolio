@@ -101,32 +101,6 @@ function App() {
           />
         </section>
 
-        {/* SKILLS / TECHNOLOGIES SECTION */}
-        <motion.section
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUp}
-          className="py-24 md:py-32 border-t border-charcoal/10"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-            <div className="md:col-span-4">
-              <h3 className="text-xs uppercase tracking-widest text-charcoal/50">01 / Tools</h3>
-            </div>
-            <div className="md:col-span-8">
-              <h2 className="text-2xl md:text-4xl text-black tracking-tight leading-tight max-w-3xl mb-16">
-                Tools I work with
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
-                <SkillCategory title="AI / ML" items={["Python", "TensorFlow", "PyTorch", "OpenCV"]} />
-                <SkillCategory title="Frontend" items={["React", "JavaScript", "Tailwind CSS", "Framer Motion"]} />
-                <SkillCategory title="Backend" items={["Node.js", "Express", "MySQL"]} />
-                <SkillCategory title="Creative / Tools" items={["FL Studio", "Tauri", "Git", "Figma"]} />
-              </div>
-            </div>
-          </div>
-        </motion.section>
-
         {/* ABOUT SECTION */}
         <motion.section
           initial="hidden"
@@ -137,12 +111,38 @@ function App() {
         >
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             <div className="md:col-span-4">
-              <h3 className="text-xs uppercase tracking-widest text-charcoal/50">02 / Index</h3>
+              <h3 className="text-xs uppercase tracking-widest text-charcoal/50">01 / Index</h3>
             </div>
             <div className="md:col-span-8">
               <p className="text-2xl md:text-4xl text-black tracking-tight leading-tight max-w-3xl">
                 I’m a CSE (AI/ML) student exploring machine learning, interface design, and creative digital experiences.
               </p>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* SKILLS / TECHNOLOGIES SECTION */}
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+          className="py-24 md:py-32 border-t border-charcoal/10"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            <div className="md:col-span-4">
+              <h3 className="text-xs uppercase tracking-widest text-charcoal/50">02 / Tools</h3>
+            </div>
+            <div className="md:col-span-8">
+              <h2 className="text-2xl md:text-4xl text-black tracking-tight leading-tight max-w-3xl mb-16">
+                Tools I work with
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+                <SkillCategory title="AI / ML" items={["Python", "TensorFlow", "PyTorch", "OpenCV"]} />
+                <SkillCategory title="Frontend" items={["React", "JavaScript", "Tailwind CSS", "Framer Motion", "Tauri"]} />
+                <SkillCategory title="Backend" items={["Node.js", "Express", "MySQL", "Tauri"]} />
+                <SkillCategory title="Creative / Tools" items={["FL Studio", "Git", "Figma"]} />
+              </div>
             </div>
           </div>
         </motion.section>
@@ -164,15 +164,36 @@ function App() {
             <ProjectCategory
               title="AI / ML Systems"
               projects={[
-                { name: "Multimodal Meme Sentiment Analysis", desc: "Analyzing sentiment across image and text modalities.", tech: "Python, PyTorch, Transformers" },
-                { name: "Deepfake Detection", desc: "Identifying synthetic media and manipulated artifacts.", tech: "CNNs, OpenCV, TensorFlow" }
+                { 
+                  name: "Multimodal Meme Sentiment Analysis", 
+                  desc: "Analyzing sentiment across image and text modalities.", 
+                  tech: "Python, PyTorch, Transformers",
+                  link: "https://github.com/adwaithwas/meme-sentiment-analysis"
+                },
+                {
+                  name: "Smart Garbage Detection System",
+                  desc: "Automated waste classification and management system.",
+                  tech: "YOLOv8, React, Node.js",
+                  link: "https://github.com/adwaithwas/smart-garbage-detection-system"
+                },
+                { 
+                  name: "Deepfake Detection", 
+                  desc: "Identifying synthetic media and manipulated artifacts.", 
+                  tech: "CNNs, OpenCV, TensorFlow",
+                  link: "https://github.com/adwaithwas/Deep-Fake-Detection-for-Images"
+                }
               ]}
             />
 
             <ProjectCategory
               title="Interactive Experiences"
               projects={[
-                { name: "Jumper.js", desc: "A pure Vanilla JS platformer game.", tech: "JavaScript, HTML5 Canvas" },
+                { 
+                  name: "Jumper.js", 
+                  desc: "A pure Vanilla JS platformer game.", 
+                  tech: "JavaScript, HTML5 Canvas",
+                  link: "https://github.com/adwaithwas/jumper"
+                },
                 { name: "Guitar Fretboard Simulator", desc: "Interactive tool for music theory visualization.", tech: "React, CSS Modules" },
                 { name: "Tabs Maker", desc: "Minimalist tab authoring experience.", tech: "React, LocalStorage" }
               ]}
