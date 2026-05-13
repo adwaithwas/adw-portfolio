@@ -164,9 +164,9 @@ function App() {
             <ProjectCategory
               title="AI / ML Systems"
               projects={[
-                { 
-                  name: "Multimodal Meme Sentiment Analysis", 
-                  desc: "Analyzing sentiment across image and text modalities.", 
+                {
+                  name: "Multimodal Meme Sentiment Analysis",
+                  desc: "Analyzing sentiment across image and text modalities.",
                   tech: "Python, PyTorch, Transformers",
                   link: "https://github.com/adwaithwas/meme-sentiment-analysis"
                 },
@@ -176,21 +176,58 @@ function App() {
                   tech: "YOLOv8, React, Node.js",
                   link: "https://github.com/adwaithwas/smart-garbage-detection-system"
                 },
-                { 
-                  name: "Deepfake Detection", 
-                  desc: "Identifying synthetic media and manipulated artifacts.", 
+                {
+                  name: "Deepfake Detection",
+                  desc: "Identifying synthetic media and manipulated artifacts.",
                   tech: "CNNs, OpenCV, TensorFlow",
                   link: "https://github.com/adwaithwas/Deep-Fake-Detection-for-Images"
                 }
               ]}
             />
 
+            {/* Featured Product: CureFeed */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="grid grid-cols-1 md:grid-cols-12 gap-8 py-24 border-t border-charcoal/10"
+            >
+              <div className="md:col-span-4">
+                <h3 className="text-xs uppercase tracking-widest text-muted-red font-semibold mb-6">Featured Product</h3>
+              </div>
+              <div className="md:col-span-8">
+                <a
+                  href="https://github.com/adwaithwas/CureFeed"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
+                >
+                  <h2 className="text-5xl md:text-7xl tracking-tighter text-black mb-8 group-hover:text-muted-red transition-colors duration-500">
+                    CureFeed.
+                  </h2>
+                  <p className="text-2xl md:text-4xl text-black tracking-tight leading-tight max-w-3xl mb-8">
+                    A minimal, intentional YouTube feed designed to reduce algorithmic distraction and doom scrolling.
+                  </p>
+                  <p className="text-charcoal/60 text-lg md:text-xl max-w-2xl mb-12 leading-relaxed">
+                    Treats YouTube like an inbox instead of an endless feed. It delivers only the latest uploads from selected channels, strictly one video per channel, in a clean player that remembers what you've watched. Designed with zero recommendations, no autoplay chains, and no algorithmic feed for a truly <u>distraction-free</u> experience.
+                  </p>
+                  <div className="flex flex-wrap gap-x-12 gap-y-4 items-center">
+                    <span className="text-xs uppercase tracking-widest text-charcoal/40">Product Design • React • Intentional UX</span>
+                    <span className="text-xs uppercase tracking-widest text-black flex items-center group-hover:text-muted-red transition-colors">
+                      Explore Project <ArrowUpRight className="ml-2" size={14} />
+                    </span>
+                  </div>
+                </a>
+              </div>
+            </motion.div>
+
             <ProjectCategory
               title="Interactive Experiences"
               projects={[
-                { 
-                  name: "Jumper.js", 
-                  desc: "A pure Vanilla JS platformer game.", 
+                {
+                  name: "Jumper.js",
+                  desc: "A pure Vanilla JS platformer game.",
                   tech: "JavaScript, HTML5 Canvas",
                   link: "https://github.com/adwaithwas/jumper"
                 },
