@@ -114,7 +114,7 @@ function App() {
             </div>
             <div className="md:col-span-8">
               <p className="text-2xl md:text-4xl text-black tracking-tight leading-tight max-w-3xl">
-                I’m a CSE (AIML) student exploring machine learning, interface design, internet culture, and creative digital experiences.
+                I’m a CSE (AI/ML) student exploring machine learning, interface design, and creative digital experiences.
               </p>
             </div>
           </div>
@@ -159,6 +159,35 @@ function App() {
                 { name: "yekshi", desc: "blackgaze/ blackmetal one-man-band project.", tech: "electric guitar, bass, drums, sound-design, engineer", link: "https://open.spotify.com/artist/1PLsa01CmxJ2i61Ezm54Qv?si=-AZjuVS4Sy6__JBsgioNsA" }
               ]}
             />
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={staggerContainer}
+              className="grid grid-cols-1 md:grid-cols-12 gap-8"
+            >
+              <div className="md:col-span-4">
+                <h4 className="text-sm tracking-wide text-charcoal/80 mb-6">Problem Solving</h4>
+              </div>
+              <div className="md:col-span-8">
+                <motion.div variants={fadeInUp}>
+                  <p className="text-charcoal/70 text-lg mb-6">
+                    Solving algorithmic and data structure problems across competitive programming platforms.
+                  </p>
+                  <div className="flex flex-wrap gap-8">
+                    <a href="https://leetcode.com/u/ranoutofwhy/" target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-widest text-black hover:text-muted-red transition-colors duration-300 flex items-center group">
+                      LeetCode
+                      <ArrowUpRight className="ml-1 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300" size={16} />
+                    </a>
+                    <a href="https://codeforces.com/profile/adwaithwas" target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-widest text-black hover:text-muted-red transition-colors duration-300 flex items-center group">
+                      Codeforces
+                      <ArrowUpRight className="ml-1 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300" size={16} />
+                    </a>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
         </section>
 
@@ -173,9 +202,10 @@ function App() {
           <div className="flex flex-col items-center text-center">
             <h2 className="text-5xl md:text-8xl tracking-tighter text-black mb-12">Let's connect.</h2>
             <div className="flex space-x-8">
-              <SocialLink href="#" icon={<GithubIcon />} label="GitHub" />
-              <SocialLink href="#" icon={<LinkedinIcon />} label="LinkedIn" />
-              <SocialLink href="#" icon={<MailIcon />} label="Email" />
+              <SocialLink href="https://github.com/adwaithwas" icon={<GithubIcon />} label="GitHub" />
+              <SocialLink href="https://www.linkedin.com/in/adwaith-sunil-700178284/" icon={<LinkedinIcon />} label="LinkedIn" />
+              <SocialLink href="https://leetcode.com/u/ranoutofwhy/" icon={<LeetcodeIcon />} label="LeetCode" />
+              <SocialLink href="mailto:betteradwaith@gmail.com" icon={<MailIcon />} label="Email" />
             </div>
           </div>
         </motion.section>
@@ -278,6 +308,14 @@ function MailIcon() {
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
       <polyline points="22,6 12,13 2,6"></polyline>
+    </svg>
+  );
+}
+
+function LeetcodeIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2L2 12l10 10 10-10L12 2zM12 6l6 6-6 6-6-6 6-6z" />
     </svg>
   );
 }
