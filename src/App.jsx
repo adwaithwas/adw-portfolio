@@ -36,7 +36,7 @@ function App() {
           transition={{ duration: 1, delay: 0.2 }}
           className="text-sm font-medium tracking-tight opacity-70"
         >
-          PORTFOLIO '26
+          {/* PORTFOLIO '26 */}
         </motion.div>
       </nav>
 
@@ -74,6 +74,32 @@ function App() {
           />
         </section>
 
+        {/* SKILLS / TECHNOLOGIES SECTION */}
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+          className="py-24 md:py-32 border-t border-charcoal/10"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            <div className="md:col-span-4">
+              <h3 className="text-xs uppercase tracking-widest text-charcoal/50">01 / Tools</h3>
+            </div>
+            <div className="md:col-span-8">
+              <h2 className="text-2xl md:text-4xl text-black tracking-tight leading-tight max-w-3xl mb-16">
+                Tools I work with
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+                <SkillCategory title="AI / ML" items={["Python", "TensorFlow", "PyTorch", "OpenCV"]} />
+                <SkillCategory title="Frontend" items={["React", "JavaScript", "Tailwind CSS", "Framer Motion"]} />
+                <SkillCategory title="Backend" items={["Node.js", "Express", "MySQL"]} />
+                <SkillCategory title="Creative / Tools" items={["FL Studio", "Tauri", "Git", "Figma"]} />
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
         {/* ABOUT SECTION */}
         <motion.section
           initial="hidden"
@@ -84,7 +110,7 @@ function App() {
         >
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             <div className="md:col-span-4">
-              <h3 className="text-xs uppercase tracking-widest text-charcoal/50">01 / Index</h3>
+              <h3 className="text-xs uppercase tracking-widest text-charcoal/50">02 / Index</h3>
             </div>
             <div className="md:col-span-8">
               <p className="text-2xl md:text-4xl text-black tracking-tight leading-tight max-w-3xl">
@@ -103,7 +129,7 @@ function App() {
             variants={fadeInUp}
             className="mb-16 md:mb-24"
           >
-            <h3 className="text-xs uppercase tracking-widest text-charcoal/50 mb-4">02 / Work</h3>
+            <h3 className="text-xs uppercase tracking-widest text-charcoal/50 mb-4">03 / Work</h3>
             <h2 className="text-4xl md:text-6xl tracking-tighter text-black">Projects I've built</h2>
           </motion.div>
 
@@ -128,33 +154,13 @@ function App() {
             <ProjectCategory
               title="Sound / Media"
               projects={[
-                { name: "Be Like Him", desc: "Audio-visual exploration piece.", tech: "electric guitar, bass guitar and fl studio", link: "https://open.spotify.com/artist/66xW3S7OQtWvYR4VASX3al?si=jfKuK7pPQDWh3Vgg8th2Vw" },
-                { name: "Picking Up Cats", desc: "Soundscape design project.", tech: "electric guitar, bass guitar and fl studio", link: "https://open.spotify.com/artist/4jEvdgGVyDUKMFG1GukYI0?si=EmxXvcO6Sz-ml0GJzl8bHg" }
+                { name: "be like him", desc: "Slowcore one-man-band project.", tech: "electric guitar, bass guitar and fl studio", link: "https://open.spotify.com/artist/66xW3S7OQtWvYR4VASX3al?si=jfKuK7pPQDWh3Vgg8th2Vw" },
+                { name: "picking up cats", desc: "Ambient guitar project.", tech: "electric guitar, bass guitar and fl studio", link: "https://open.spotify.com/artist/4jEvdgGVyDUKMFG1GukYI0?si=EmxXvcO6Sz-ml0GJzl8bHg" },
+                { name: "yekshi", desc: "blackgaze/ blackmetal one-man-band project.", tech: "electric guitar, bass, drums, sound-design, engineer", link: "https://open.spotify.com/artist/1PLsa01CmxJ2i61Ezm54Qv?si=-AZjuVS4Sy6__JBsgioNsA" }
               ]}
             />
           </div>
         </section>
-
-        {/* SKILLS SECTION */}
-        <motion.section
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUp}
-          className="py-24 md:py-32 border-t border-charcoal/10"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-            <div className="md:col-span-4">
-              <h3 className="text-xs uppercase tracking-widest text-charcoal/50">03 / Capabilities</h3>
-            </div>
-            <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
-              <SkillColumn title="AI / ML" skills={['PyTorch', 'TensorFlow', 'Computer Vision', 'NLP']} />
-              <SkillColumn title="Frontend" skills={['React', 'Vite', 'TailwindCSS', 'Framer Motion']} />
-              <SkillColumn title="Backend" skills={['Node.js', 'Python', 'FastAPI', 'PostgreSQL']} />
-              <SkillColumn title="Creative" skills={['Ableton Live', 'Figma', 'WebGL', 'Sound Design']} />
-            </div>
-          </div>
-        </motion.section>
 
         {/* CONTACT SECTION */}
         <motion.section
@@ -218,13 +224,15 @@ function ProjectCategory({ title, projects }) {
   );
 }
 
-function SkillColumn({ title, skills }) {
+function SkillCategory({ title, items }) {
   return (
-    <div>
-      <h5 className="text-sm text-black font-medium mb-6">{title}</h5>
-      <ul className="space-y-3">
-        {skills.map((skill, i) => (
-          <li key={i} className="text-charcoal/70 text-sm">{skill}</li>
+    <div className="flex flex-col group">
+      <h5 className="text-xs uppercase tracking-widest text-charcoal/60 mb-6 border-b border-charcoal/10 pb-4">{title}</h5>
+      <ul className="space-y-4">
+        {items.map((item, i) => (
+          <li key={i} className="text-black text-lg md:text-xl tracking-tight hover:text-muted-red transition-colors duration-300">
+            {item}
+          </li>
         ))}
       </ul>
     </div>
