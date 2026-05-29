@@ -139,8 +139,8 @@ function App() {
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
                 <SkillCategory title="AI / ML" items={["Python", "TensorFlow", "PyTorch", "OpenCV"]} />
-                <SkillCategory title="Frontend" items={["React", "JavaScript", "Tailwind CSS", "Framer Motion", "Tauri"]} />
-                <SkillCategory title="Backend" items={["Node.js", "Express", "MySQL", "Tauri"]} />
+                <SkillCategory title="Frontend" items={["React", "JavaScript", "Tailwind CSS", "Tauri"]} />
+                <SkillCategory title="Backend" items={["Node.js", "MySQL", "Tauri"]} />
                 <SkillCategory title="Creative / Tools" items={["FL Studio", "Git", "Figma"]} />
               </div>
             </div>
@@ -214,6 +214,43 @@ function App() {
                   </p>
                   <div className="flex flex-wrap gap-x-12 gap-y-4 items-center">
                     <span className="text-xs uppercase tracking-widest text-charcoal/40">Product Design • React • Intentional UX</span>
+                    <span className="text-xs uppercase tracking-widest text-black flex items-center group-hover:text-muted-red transition-colors">
+                      Explore Project <ArrowUpRight className="ml-2" size={14} />
+                    </span>
+                  </div>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Featured Project: Meow Image Format */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="grid grid-cols-1 md:grid-cols-12 gap-8 py-24 border-t border-charcoal/10"
+            >
+              <div className="md:col-span-4">
+                <h3 className="text-xs uppercase tracking-widest text-muted-red font-semibold mb-6">Featured Project</h3>
+              </div>
+              <div className="md:col-span-8">
+                <a
+                  href="https://github.com/adwaithwas/meow-image-format"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
+                >
+                  <h2 className="text-5xl md:text-7xl tracking-tighter text-black mb-8 group-hover:text-muted-red transition-colors duration-500">
+                    .meow format
+                  </h2>
+                  <p className="text-2xl md:text-4xl text-black tracking-tight leading-tight max-w-3xl mb-8">
+                    A custom binary image format and interactive gallery viewer.
+                  </p>
+                  <p className="text-charcoal/60 text-lg md:text-xl max-w-2xl mb-12 leading-relaxed">
+                    Built from scratch to deeply understand byte encoding and computer graphics. It features a custom binary layout for sequential RGB data and a Java Swing viewer with zoom and pan capabilities. Converts standard image types into <code>.meow</code> files.
+                  </p>
+                  <div className="flex flex-wrap gap-x-12 gap-y-4 items-center">
+                    <span className="text-xs uppercase tracking-widest text-charcoal/40">Java • Computer Graphics • Byte Encoding</span>
                     <span className="text-xs uppercase tracking-widest text-black flex items-center group-hover:text-muted-red transition-colors">
                       Explore Project <ArrowUpRight className="ml-2" size={14} />
                     </span>
