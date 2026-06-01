@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Lenis from 'lenis';
@@ -17,6 +17,66 @@ const staggerContainer = {
     }
   }
 };
+
+const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%&*';
+
+function ScrambleWord({ text }) {
+  const [displayText, setDisplayText] = useState(text);
+  const [isHovered, setIsHovered] = useState(false);
+  const intervalRef = useRef(null);
+  const iterationRef = useRef(0);
+
+  const scramble = useCallback(() => {
+    iterationRef.current = 0;
+    clearInterval(intervalRef.current);
+
+    intervalRef.current = setInterval(() => {
+      setDisplayText((prev) =>
+        text
+          .split("")
+          .map((char, index) => {
+            if (char === '.' || char === ' ') return char;
+            if (index < iterationRef.current) return text[index];
+            return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+          })
+          .join("")
+      );
+
+      iterationRef.current += 1 / 3;
+
+      if (iterationRef.current >= text.length) {
+        clearInterval(intervalRef.current);
+        setDisplayText(text);
+      }
+    }, 30);
+  }, [text]);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    scramble();
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    clearInterval(intervalRef.current);
+    setDisplayText(text);
+  };
+
+  useEffect(() => {
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  return (
+    <motion.span
+      className="inline-block cursor-pointer transition-colors duration-300"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{ color: isHovered ? '#e53e3e' : 'inherit' }}
+    >
+      {displayText}
+    </motion.span>
+  );
+}
 
 function App() {
   useEffect(() => {
@@ -79,9 +139,23 @@ function App() {
             <motion.h2 variants={fadeInUp} className="text-charcoal/70 tracking-widest text-xs sm:text-sm uppercase mb-6 uppercase">
               B.Tech CSE (AIML)
             </motion.h2>
-            <motion.h1 variants={fadeInUp} className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tighter font-medium leading-[0.9] text-black mb-12">
-              Adwaith <br /> Sunil.
-            </motion.h1>
+            <motion.div
+              variants={fadeInUp}
+            >
+              <motion.h1
+                className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tighter font-medium leading-[0.9] text-black mb-12 select-none"
+                animate={{ y: [0, -6, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <ScrambleWord text="Adwaith" />
+                <br />
+                <ScrambleWord text="Sunil." />
+              </motion.h1>
+            </motion.div>
             <motion.div variants={fadeInUp} className="max-w-2xl">
               {/* <p className="text-xl sm:text-2xl md:text-3xl text-charcoal leading-snug tracking-tight text-balance">
                 building emotionally aware systems through code, ai, sound, and interaction.
@@ -198,7 +272,7 @@ function App() {
               </div>
               <div className="md:col-span-8">
                 <a
-                  href="https://github.com/adwaithwas/CureFeed"
+                  href="https://cure-feed.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group"
@@ -215,7 +289,7 @@ function App() {
                   <div className="flex flex-wrap gap-x-12 gap-y-4 items-center">
                     <span className="text-xs uppercase tracking-widest text-charcoal/40">Product Design • React • Intentional UX</span>
                     <span className="text-xs uppercase tracking-widest text-black flex items-center group-hover:text-muted-red transition-colors">
-                      Explore Project <ArrowUpRight className="ml-2" size={14} />
+                      Explore Project's Git<ArrowUpRight className="ml-2" size={14} />
                     </span>
                   </div>
                 </a>
